@@ -3,13 +3,234 @@
 
 ---
 
-<header>
-  <h1>Jeevan Miranda</h1>
-  <nav class="hidden md:flex md:space-x-6 flex-col md:flex-row items-center md:items-start">
-    <ul>
-      <li>About Me</li>
-      <li>Projects</li>
-      <li>Resume</li>
+<header class="header">
+  <a href="/" class="nav-logo">Jeevan Miranda</a>
+  <nav class="navbar">
+    <ul class="nav-menu">
+        <a href="#AboutMe" class="nav-link"><li class="nav-item">About</li></a>
+        <a href="#Projects" class="nav-link"><li class="nav-item">Projects</li></a>
+        <a href="https://drive.google.com/file/d/1_eC1k4WP3lHaqKSOjmywNYD1onKlOJ35/view?usp=sharing" class="nav-link"><li class="nav-item">Resume</li></a>
     </ul>
+
+    </div>
   </nav>
+  <div class="menu-container">
+    <div class="hamburger-btn">
+      <span class="bar" id="bar1"></span>
+      <span class="bar" id="bar2"></span>
+      <span class="bar" id="bar3"></span>
+    </div>
+  </div>
+
+  <div class="menu-drop"></div>
+
+  <script>
+    const navbar = document.querySelector(".navbar") as Element
+    const menuDrop = document.querySelector(".menu-drop") as Element
+    const hamburger = document.querySelector(".hamburger-btn") as Element
+    const barOne = document.querySelector("#bar1") as Element
+    const barTwo = document.querySelector("#bar2") as Element
+    const barThree = document.querySelector("#bar3") as Element
+    
+    hamburger.addEventListener("click", () => {
+      barOne.classList.toggle("activeBarOne")
+      barTwo.classList.toggle("activeBarTwo")
+      barThree.classList.toggle("activeBarThree")
+      navbar.classList.toggle("activeMenu")
+      menuDrop.classList.toggle("activeMenu-drop")
+    })
+
+    menuDrop.addEventListener("click", () => {
+      barOne.classList.toggle("activeBarOne")
+      barTwo.classList.toggle("activeBarTwo")
+      barThree.classList.toggle("activeBarThree")
+      navbar.classList.toggle("activeMenu")
+      menuDrop.classList.toggle("activeMenu-drop")
+    })
+  </script>
+
 </header>
+
+<style is:global>
+  .header {
+    position: relative;
+    height: 80px;
+    background-color: #000;
+    width: 100%;
+    padding: 20px 20px;
+    color: #f6f6f9;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    max-width: 1355px;
+    margin: 0 auto;
+  }
+
+  .nav-logo{
+    display: inline-block;
+    position: relative;
+    font-size: 2.1rem;
+    font-weight: 400;
+    z-index: 20;
+  }
+
+  .navbar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #f6f6f9;
+  }
+
+  .nav-menu {
+    position: relative;
+    display: flex;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: #f6f6f9;
+  }
+
+  .nav-item {
+    position: relative;
+    list-style: none;
+    color: #f6f6f9;
+    transition: .3s;
+    margin: 0 10x;
+    padding: 4px 2px;
+    text-align: center;
+  }
+
+ .nav-item::before {
+  content:"";
+  position: absolute;
+  height: 2px;
+  width: 0%;
+  background-color: #01be96;
+  bottom: -3px;
+ }
+
+ .nav-item:hover::before {
+  width: 100%;
+  transition: 0.4s;
+ }
+
+ .nav-item:hover {
+  color: #01be96;
+ }
+
+ .menu-container {
+  display: none;
+ }
+
+ .menu-drop {
+  display: none;
+ }
+ /*responsiveness*/
+@media (max-width: 768px;) {
+  .menu-drop {
+    display: block;
+  }
+
+  .menu-container {
+    display: block;
+    position: relative;
+    padding: 0px 20px;
+    z-index: 9999;
+  }
+
+  .header {
+    position: fixed;
+    display: flex;
+    justify-items: center;
+    justify-content: space-between;
+    top:0;
+    left:0;
+    z-index: 100;
+  }
+
+  .nav-logo {
+    display: inline-block;
+  }
+  .bar {
+    display: block;
+    position: relative;
+    height: 2px;
+    width: 40px;
+    background-color: #f6f6f9;
+    top: -5px;
+    margin-top: 10px;
+    cursor: pointer;
+    transform-origin: 0px 100%;
+    transition: all 0.4s;
+  }
+
+  .activeBarOne {
+    transform: rotate(-40deg) translate(-2px, 1px)
+  }
+  .activeBarTwo {
+    opacity: 0;
+    margin-left: -30px;
+  }
+  .activeBarThree {
+    transform: rotate(-40deg) translate(-2px, 1px)
+  }
+
+  .navbar {
+    position: fixed;
+    flex-direction: column;
+    background: #111111;
+    width: auto;
+    height: 100vh;
+    right: -300px;
+    top: 80px;
+    transition: right 0.4s ease-in-out;
+    z-index: 100;
+  }
+  .nav-item {
+    padding: 30px 80px;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+  }
+
+  .nav-item:hover {
+    background-color: #01be96;
+    color : #000
+  }
+
+  .nav-item:hover::before{
+    content: "";
+    width: 0;
+    height: 0;
+  }
+
+  .activeMenu {
+    right: 0px;
+    transition: right 0.4s ease-in-out;
+  }
+
+  .menu-drop {
+    top: 0;
+    left: 0;
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 20;
+    display:none;
+  }
+
+  .activeMenu-drop {
+    display: block;
+    transition: 0.5s display;
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+</style>
